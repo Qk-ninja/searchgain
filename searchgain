@@ -1,0 +1,27 @@
+import random
+from selenium import webdriver
+
+# Collect user information
+username = input("Enter your username: ")
+password = input("Enter your password: ")
+
+# Use headless browser to interact with website
+options = webdriver.FirefoxOptions()
+options.add_argument("--headless")
+
+browser = webdriver.Firefox(options=options)
+browser.get("https://www.example.com")
+
+# Perform actions on the website
+# ...
+
+browser.quit()
+
+# Display results
+number_of_searches = int(input("Enter the number of searches: "))
+points_earned = 0
+
+for i in range(number_of_searches):
+    points_earned += random.randint(5, 15)
+
+print(f"{username} earned {points_earned} points")
