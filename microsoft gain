@@ -1,0 +1,34 @@
+import random
+from selenium import webdriver
+
+# Collect user information
+username = input("Enter your Microsoft account email: ")
+password = input("Enter your Microsoft account password: ")
+
+# Use headless browser to interact with website
+options = webdriver.FirefoxOptions()
+options.add_argument("--headless")
+
+browser = webdriver.Firefox(options=options)
+browser.get("https://account.microsoft.com/rewards/")
+
+# Sign in to Microsoft account
+browser.find_element_by_xpath("//a[contains(text(), 'Sign in')]").click()
+browser.find_element_by_xpath("//input[@type='email']").send_keys(username)
+browser.find_element_by_xpath("//input[@type='submit']").click()
+browser.find_element_by_xpath("//input[@type='password']").send_keys(password)
+browser.find_element_by_xpath("//input[@type='submit']").click()
+
+# Perform actions on the Microsoft Rewards program website
+# ...
+
+browser.quit()
+
+# Display results
+number_of_searches = int(input("Enter the number of searches: "))
+points_earned = 0
+
+for i in range(number_of_searches):
+    points_earned += random.randint(5, 15)
+
+print(f"{username} earned {points_earned} points")
