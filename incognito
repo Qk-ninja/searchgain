@@ -1,9 +1,21 @@
-import random
-from selenium import webdriver
+import base64
+
+def encrypt(data):
+    # Use base64 encoding to encrypt the data
+    encoded_data = base64.b64encode(data.encode())
+    return encoded_data.decode()
+
+def decrypt(encoded_data):
+    # Use base64 decoding to decrypt the data
+    decoded_data = base64.b64decode(encoded_data.encode()).decode()
+    return decoded_data
 
 # Collect user information
 username = input("Enter your username: ")
 password = input("Enter your password: ")
+
+# Encrypt the password
+encrypted_password = encrypt(password)
 
 # Use headless browser to interact with website
 options = webdriver.FirefoxOptions()
@@ -17,7 +29,8 @@ browser.get("https://www.example.com")
 
 browser.quit()
 
-# Display results
+# Decrypt the password and display results
+password = decrypt(encrypted_password)
 number_of_searches = int(input("Enter the number of searches: "))
 points_earned = 0
 
